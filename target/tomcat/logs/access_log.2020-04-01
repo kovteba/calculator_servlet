@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [01/Apr/2020:10:47:23 +0300] "GET /calculator HTTP/1.1" 302 - http-bio-9090-exec-1 0
+0:0:0:0:0:0:0:1 - - [01/Apr/2020:10:47:23 +0300] "GET /calculator/ HTTP/1.1" 404 973 http-bio-9090-exec-3 18
+0:0:0:0:0:0:0:1 - - [01/Apr/2020:10:47:24 +0300] "GET /favicon.ico HTTP/1.1" 404 - http-bio-9090-exec-4 0
