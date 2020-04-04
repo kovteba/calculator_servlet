@@ -21,12 +21,8 @@ $(document).ready(function () {
     var plus = document.getElementById("plus");
     var minus = document.getElementById("minus");
 
-    var equals = document.getElementById("equals");
-
     var inputValue = document.getElementById("inputValue");
     var resultValue = document.getElementById("resultValue");
-
-    var clear = document.getElementById("clear");
 
 
     $("#zero").click(function (e) {
@@ -125,12 +121,17 @@ $(document).ready(function () {
 
 
     $("#equals").click(function (e) {
-
         $.post({
             url: "/mainController",
             data: inputValue.value
         });
-        // e.preventDefault()
-
     });
+
+    $("#redo").click(function (e) {
+        $.post({
+            url: "/mainController",
+            data: inputValue.value
+        });
+    });
+
 });
