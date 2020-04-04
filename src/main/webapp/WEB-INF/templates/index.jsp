@@ -69,7 +69,7 @@
                             <button type="button"  id="minus" class="btn btn-secondary value button" value="-">-</button>
                         </td>
                         <td>
-                            <button type="button" id="redo" class="btn btn-danger value button">R</button>
+                            <button type="submit" id="redo" class="btn btn-danger value button">R</button>
                         </td>
                     </tr>
                     <tr>

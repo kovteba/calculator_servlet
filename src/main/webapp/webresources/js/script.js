@@ -24,6 +24,7 @@ $(document).ready(function () {
     var inputValue = document.getElementById("inputValue");
     var resultValue = document.getElementById("resultValue");
 
+    var before = " ";
 
     $("#zero").click(function (e) {
         var value = inputValue.value;
@@ -115,6 +116,7 @@ $(document).ready(function () {
     });
 
     $("#clear").click(function (e) {
+        before = inputValue.value;
         inputValue.setAttribute("value", " ");
         resultValue.setAttribute("value", " ");
     });
@@ -123,14 +125,15 @@ $(document).ready(function () {
     $("#equals").click(function (e) {
         $.post({
             url: "/mainController",
-            data: inputValue.value
+            data: inputValue.value,
         });
     });
 
     $("#redo").click(function (e) {
+        inputValue.setAttribute("value", before);
         $.post({
             url: "/mainController",
-            data: inputValue.value
+            data: inputValue.value,
         });
     });
 

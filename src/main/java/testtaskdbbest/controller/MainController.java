@@ -28,20 +28,10 @@ public class MainController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-        System.out.println("before");
-        String inputValue = req.getParameter("inputValue");
-        System.out.println("INPUT : " + inputValue);
-
-        String result = req.getParameter("result");
-        System.out.println("RESULT : " + result);
-
+        String inputValue= (String)req.getSession().getAttribute("inputValue");
+        String result= (String)req.getSession().getAttribute("result");
         req.setAttribute("inputValue", inputValue);
-
         req.setAttribute("result", result);
-
-        System.out.println("after");
         RequestDispatcher dispatcher = req.getRequestDispatcher(
                 "/WEB-INF/templates/index.jsp");
         dispatcher.forward(req, resp);
@@ -49,9 +39,7 @@ public class MainController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String inputValue = req.getParameter("inputValue");
-        System.out.println("!!!!!!!!!!! : " + inputValue);
         String result = null;
         try {
             result = calculatorDAO.catculate(inputValue);
@@ -59,19 +47,8 @@ public class MainController extends HttpServlet {
             e.printStackTrace();
             result = "Incorrect string";
         }
-
-
-        req.setAttribute("inputValue", inputValue);
-
-        req.setAttribute("result", result);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher(
-                "/WEB-INF/templates/index.jsp");
-        dispatcher.forward(req, resp);
-
-//        req.setAttribute("inputValue", inputValue);
-//        req.setAttribute("result", result);
-//
-//        resp.sendRedirect("mainController?inputValue=" + inputValue + "&result=" + result);
+        req.getSession().setAttribute("inputValue", inputValue);
+        req.getSession().setAttribute("result", result);
+        resp.sendRedirect("");
     }
 }
