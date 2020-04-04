@@ -52,7 +52,13 @@ public class MainController extends HttpServlet {
 
         String inputValue = req.getParameter("inputValue");
         System.out.println("!!!!!!!!!!! : " + inputValue);
-        String result = calculatorDAO.catculate(inputValue);
+        String result = null;
+        try {
+            result = calculatorDAO.catculate(inputValue);
+        } catch (NumberFormatException e){
+            e.printStackTrace();
+            result = "Incorrect string";
+        }
 
 
         req.setAttribute("inputValue", inputValue);

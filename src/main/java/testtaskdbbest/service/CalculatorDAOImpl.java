@@ -23,8 +23,6 @@ public class CalculatorDAOImpl implements CalculatorDAO {
         if (!bracket.find()) {
             return inputValue;
         }
-//        String stringBracketOrigin = bracket.group();
-//        String stringBracket = bracket.group();
         String stringBracket = action(ALL_ACTIONDD, bracket.group());
         stringBracket = action(ALL_ACTIONPM, stringBracket);
         stringBracket = stringBracket
