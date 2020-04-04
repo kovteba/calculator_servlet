@@ -1,17 +1,14 @@
 package testtaskdbbest.service;
 
 import org.junit.jupiter.api.Test;
-import testtaskdbbest.MyCalculator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 class CalculatorDAOImplTest {
 
-    private static String s1 = "11+12*2+(2×(2+10)-1)";//46
+    private static String s1 = "11+12*2+(2*(2+10)-1)";//58
     private static String s2 = "7+22/3-4+33";//43,333333333
     private static String s3 = "85-32+5*4+(13-5)";//81
     private static String s4 = "5+36+98/2+8-14";//84
@@ -25,7 +22,7 @@ class CalculatorDAOImplTest {
     private static String s12 = "5*5*5*5-2/(21*2+2)+(1*2+1)";//627,954545455
     private static String s13 = "5/7*98-8+5/48-(87/5+65)-156";//-176.29583333333
     private static String s14 = "4/7+59-(84/2)+(84*2)-(62/4*3)";//139.07142857143
-    private static String s15 = "48/98+65(45/98*9+6)-4+(78*84/52)-45";//736,112244898
+    private static String s15 = "4/87-9-(8/(4*9-8)+5*(4/7+6))-15";//−57,096880131
     private static String s16 = "4/(45-78/2)-45*(78+2/5)*78/3";//−91727,333333333
     private static String s17 = "0.5*8.25-8*(7.2/3-6)*(7.9-12)+7";//−106,955
     private static String s18 = "2.6-5.8+8/(78.2/8)*7.9-8/(8+2.1)";//2,473393938
@@ -65,33 +62,9 @@ class CalculatorDAOImplTest {
 
     public static void main(String[] args) {
         String s = "5*7/98+8-5/487*156";//-160.32819459801
-
-
         s = action(ALL_ACTIONDD, s);
         System.out.println("QQQQQQQQQ : " + s);
         System.out.println(action(ALL_ACTIONPM, s));
-
-//        Matcher matcherString = ALL_ACTION.matcher(s);
-//        while (matcherString.find()) {
-//            System.out.println("first : " + matcherString.group(2));
-//            System.out.println("action : " + matcherString.group(3));
-//            System.out.println("second : " + matcherString.group(4));
-//            System.out.println(calc(matcherString.group(3), matcherString.group(2), matcherString.group(4)));
-//
-//        }
-
-//        System.out.println(MyCalculator.caclucatorMy(s1));
-//        System.out.println(MyCalculator.caclucatorMy(s2));
-//        System.out.println(MyCalculator.caclucatorMy(s3));
-//        System.out.println(MyCalculator.caclucatorMy(s4));
-//        System.out.println(MyCalculator.caclucatorMy(s5));
-//        System.out.println(MyCalculator.caclucatorMy(s6));
-//        System.out.println(MyCalculator.caclucatorMy(s7));
-//        System.out.println(MyCalculator.caclucatorMy(s8));
-//        System.out.println(MyCalculator.caclucatorMy(s9));
-//        System.out.println(MyCalculator.caclucatorMy(s10));
-//        System.out.println(MyCalculator.caclucatorMy(s11));
-
     }
 
     private static String action(Pattern pattern, String inputValue) {

@@ -5,28 +5,34 @@ import java.util.regex.Pattern;
 
 public class CalculatorDAOImpl implements CalculatorDAO {
 
-    public static final Pattern BRACKET = Pattern.compile("\\(.+?\\)");
+    public static final Pattern BRACKET = Pattern.compile("(\\([^\\(\\)]+\\))");
     private static Pattern ALL_ACTIONDD = Pattern.compile("(([-+]?[0-9]*\\.?[0-9]*+)([\\*\\/])([-+]?[0-9]*\\.?[0-9]*))");
     private static Pattern ALL_ACTIONPM = Pattern.compile("(([-+]?[0-9]*\\.?[0-9]*+)([\\*\\/\\-\\+])([-+]?[0-9]*\\.?[0-9]*))");
 
 
     @Override
     public String catculate(String inputString) {
-
-        Matcher bracket = BRACKET.matcher(inputString);
-        while (bracket.find()) {
-            String stringBracketOrigin = bracket.group();
-            String stringBracket = null;
-            stringBracket = action(ALL_ACTIONDD, stringBracketOrigin);
-            stringBracket = action(ALL_ACTIONPM, stringBracket);
-            stringBracket = stringBracket
-                    .replaceAll("\\(", "")
-                    .replaceAll("\\)", "");
-            inputString = inputString.replace(stringBracketOrigin, stringBracket);
-        }
+        inputString = bracket(inputString);
         inputString = action(ALL_ACTIONDD, inputString);
         inputString = action(ALL_ACTIONPM, inputString);
         return inputString;
+    }
+
+    private static String bracket(String inputValue){
+        Matcher bracket = BRACKET.matcher(inputValue);
+        if (!bracket.find()) {
+            return inputValue;
+        }
+//        String stringBracketOrigin = bracket.group();
+//        String stringBracket = bracket.group();
+        String stringBracket = action(ALL_ACTIONDD, bracket.group());
+        stringBracket = action(ALL_ACTIONPM, stringBracket);
+        stringBracket = stringBracket
+                .replaceAll("\\(", "")
+                .replaceAll("\\)", "");
+        inputValue = inputValue.replace(bracket.group(), stringBracket);
+        inputValue = bracket(inputValue);
+        return inputValue;
     }
 
     private static String action(Pattern pattern, String inputValue) {
