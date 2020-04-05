@@ -1,0 +1,1 @@
+![Иллюстрация к проекту](https://github.com/kovteba/calculator_servlet/blob/master/calculator.jpg)
